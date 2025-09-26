@@ -5,13 +5,13 @@ import second from "../../assets/servicePage/car-wrapping-with-foil-car-service 
 
 export function CompareDemo() {
   return (
-    <div className="p-4 px-4">
+    <div className="w-full max-w-full px-4">
       <Compare
         firstImage={first}
         secondImage={second}
         firstImageClassName="object-cover object-center"
         secondImageClassname="object-cover object-center"
-        className="h-[250px] w-[200px] md:h-[500px] md:w-[500px]"
+        className="h-[250px] w-full max-w-full sm:h-[350px] md:h-[400px] lg:h-[500px]"
         slideMode="hover"
       />
     </div>

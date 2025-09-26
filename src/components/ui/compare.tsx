@@ -16,6 +16,7 @@ interface CompareProps {
   autoplay?: boolean;
   autoplayDuration?: number;
 }
+
 export const Compare = ({
   firstImage = "",
   secondImage = "",
@@ -30,11 +31,8 @@ export const Compare = ({
 }: CompareProps) => {
   const [sliderXPercent, setSliderXPercent] = useState(initialSliderPercentage);
   const [isDragging, setIsDragging] = useState(false);
-
   const sliderRef = useRef<HTMLDivElement>(null);
-
   const [isMouseOver, setIsMouseOver] = useState(false);
-
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
   const startAutoplay = useCallback(() => {
@@ -48,7 +46,7 @@ export const Compare = ({
       const percentage = progress <= 1 ? progress * 100 : (2 - progress) * 100;
 
       setSliderXPercent(percentage);
-      autoplayRef.current = setTimeout(animate, 16); // ~60fps
+      autoplayRef.current = setTimeout(animate, 16);
     };
 
     animate();
@@ -149,9 +147,12 @@ export const Compare = ({
   return (
     <div
       ref={sliderRef}
-      className={cn("w-[400px] h-[400px] overflow-hidden ", className)}
+      className={cn(
+        "w-full max-w-full overflow-hidden relative",
+        "h-[250px] sm:h-[350px] md:h-[400px] lg:h-[500px]", // Responsive height
+        className
+      )}
       style={{
-        position: "relative",
         cursor: slideMode === "drag" ? "grab" : "col-resize",
       }}
       onMouseMove={handleMouseMove}
@@ -186,12 +187,13 @@ export const Compare = ({
             />
           </div>
           {showHandlebar && (
-            <div className="h-5 w-5 rounded-md top-1/2 -translate-y-1/2 bg-secondary z-30 -right-2.5 absolute   flex items-center justify-center shadow-[0px_-1px_0px_0px_#f4c55c]">
+            <div className="h-5 w-5 rounded-md top-1/2 -translate-y-1/2 bg-secondary z-30 -right-2.5 absolute flex items-center justify-center shadow-[0px_-1px_0px_0px_#f4c55c]">
               {/* <IconDotsVertical className="h-4 w-4 text-black" /> */}
             </div>
           )}
         </motion.div>
       </AnimatePresence>
+      
       <div className="overflow-hidden w-full h-full relative z-20 pointer-events-none">
         <AnimatePresence initial={false}>
           {firstImage ? (
@@ -209,7 +211,7 @@ export const Compare = ({
                 alt="first image"
                 src={firstImage}
                 className={cn(
-                  "absolute inset-0  z-20 rounded-2xl shrink-0 w-full h-full select-none",
+                  "absolute inset-0 z-20 rounded-2xl shrink-0 w-full h-full select-none object-cover",
                   firstImageClassName
                 )}
                 draggable={false}
@@ -223,7 +225,7 @@ export const Compare = ({
         {secondImage ? (
           <motion.img
             className={cn(
-              "absolute top-0 left-0 z-[19]  rounded-2xl w-full h-full select-none",
+              "absolute top-0 left-0 z-[19] rounded-2xl w-full h-full select-none object-cover",
               secondImageClassname
             )}
             alt="second image"

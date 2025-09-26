@@ -70,7 +70,7 @@ const PPFShowcase: React.FC = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="space-y-8 space-x-3 grid grid-cols-2">
+        <div className="space-y-8 space-x-3 grid lg:grid-cols-2 grid-cols-1">
           {ppfProducts.map((product, index) => (
             <div
               key={product.id}

@@ -15,36 +15,42 @@ const services = [
     title: "Exterior Detailing",
     description: "Complete exterior wash, wax, and protection for your vehicle's paint and finish.",
     features: ["Paint correction", "Ceramic coating", "Chrome polishing"],
+    link: "/film-wrapping"
   },
   {
     image: first,
     title: "Interior Detailing",
     description: "Deep cleaning and conditioning of all interior surfaces, seats, and carpets.",
     features: ["Leather conditioning", "Steam cleaning", "Odor elimination"],
+    link: "/interior-detailing"
   },
   {
     image: second,
     title: "Paint Protection",
     description: "Advanced paint protection films and ceramic coatings for long-lasting shine.",
     features: ["PPF installation", "Ceramic coating", "Paint sealant"],
+    link: "/paint-protection"
   },
   {
     image: four,
     title: "Premium Wash",
     description: "Hand wash service with premium products and attention to every detail.",
     features: ["Hand washing", "Wheel cleaning", "Tire shine"],
+    link: "/premium-wash"
   },
   {
     image: third,
     title: "Express Service",
     description: "Quick and efficient detailing service for busy schedules without compromising quality.",
     features: ["Quick wash", "Interior vacuum", "Window cleaning"],
+    link: "/express-service"
   },
   {
     image: five,
     title: "VIP Package",
     description: "Our most comprehensive service combining all premium treatments.",
     features: ["Full detailing", "Protection coating", "Monthly maintenance"],
+    link: "/vip-package"
   },
 ]
 
@@ -201,7 +207,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
                 <li key={i} className="mb-1">• {feature}</li>
               ))}
             </ul>
-            <Link to="/film-wrapping">
+            <Link to={service.link}>
               <button className="bg-secondary text-black font-bold py-2 px-6 rounded-full transition-colors duration-300 transform hover:scale-105">
                 View More ›
               </button>
