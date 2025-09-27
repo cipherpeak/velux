@@ -56,7 +56,7 @@ export default function BannerCarousel() {
   }
 
   return (
-    <div className="px-4 sm:px-6 lg:px-4 xl:px-6 py-6 md:py-8 lg:py-12">
+    <div className="px-4 sm:px-6 lg:px-4 xl:px-6 py-12 md:py-8 lg:py-12">
       <div
         className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] xl:h-[825px] overflow-hidden rounded-3xl md:rounded-4xl lg:rounded-3xl shadow-2xl"
         onMouseEnter={() => setIsAutoPlaying(false)}

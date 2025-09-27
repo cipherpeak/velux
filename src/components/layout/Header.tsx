@@ -12,11 +12,11 @@ export default function Header() {
   const timeoutRef = useRef(null);
 
   const navigationItems = [
-    { name: "Home", href: "#", active: true },
+    { name: "Home", href: "/", active: true },
     { name: "Services", href: "#", hasDropdown: true },
-    { name: "Packages", href: "#" },
-    { name: "Franchise", href: "#" },
-    { name: "Contact Us", href: "#" },
+    { name: "Packages", href: "/packages" },
+    { name: "Franchise", href: "/franchise" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   const servicesMenuItems = [

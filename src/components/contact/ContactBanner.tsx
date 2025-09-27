@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react"
+import React from 'react'
 import banner1 from "../../assets/servicePage/banner/servive banner.jpg"
 
-function FilmServiceCarousel() {
-  const bannerSlides = [
-    {
-      id: 1,
-      title: "Premium Services",
-      subtitle: "Experience Excellence",
-      description: "Discover our comprehensive range of professional services designed to meet your needs.",
-      image: banner1,
-    }
-  ]
+const bannerSlides = [
+  {
+    id: 1,
+    title: "CONTACT US",
+    subtitle: "Get in Touch",
+    description: "Get in touch with us for all your automotive detailing needs",
+    image: banner1,
+  }
+]
 
+function ContactBanner() {
   return (
     <div className="px-4 sm:px-6 lg:px-4 xl:px-6 py-12 md:py-8 lg:py-12">
       <div className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] xl:h-[825px] overflow-hidden rounded-3xl md:rounded-4xl lg:rounded-3xl shadow-2xl">
@@ -29,7 +29,7 @@ function FilmServiceCarousel() {
                 {/* Subtitle with accent line */}
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-12 h-0.5 bg-secondary rounded-full" />
-                  <p className="text-sm md:text-base font-family-secondary lg:text-lg font-semibold text-secondary tracking-wider uppercase">
+                  <p className="text-sm md:text-base lg:text-lg font-semibold text-secondary tracking-wider uppercase">
                     {bannerSlides[0].subtitle}
                   </p>
                 </div>
@@ -40,7 +40,7 @@ function FilmServiceCarousel() {
                 </h1>
                 
                 {/* Description */}
-                <p className="text-lg md:text-xl font-family-secondary lg:text-2xl text-white leading-relaxed max-w-2xl font-light">
+                <p className="text-lg md:text-xl lg:text-2xl text-white leading-relaxed max-w-2xl font-light">
                   {bannerSlides[0].description}
                 </p>
               </div>
@@ -52,4 +52,4 @@ function FilmServiceCarousel() {
   )
 }
 
-export default FilmServiceCarousel
+export default ContactBanner

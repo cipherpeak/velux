@@ -1,46 +1,7 @@
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube, ArrowRight } from "lucide-react"
 import logo from "../../assets/logo/VE LUX LOGO 2.png";
-import { useState, useEffect, useRef } from "react"
-
-// Define the type for visibility state
-type VisibilityState = {
-  [key: string]: boolean;
-}
 
 export function Footer() {
-  const [isVisible, setIsVisible] = useState<VisibilityState>({})
-  const sectionRef = useRef<HTMLElement>(null)
-
-  // Intersection Observer for scroll animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsVisible((prev) => ({
-            ...prev,
-            [entry.target.id]: entry.isIntersecting,
-          }))
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      const elements = sectionRef.current.querySelectorAll("[id]")
-      elements.forEach((el) => {
-        observer.observe(el)
-      })
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  // Helper function to check visibility
-  const getVisibility = (id: string): boolean => {
-    return isVisible[id] || false
-  }
-
   const services = [
     "Paint Protection Film",
     "Ceramic Coating", 
@@ -52,20 +13,12 @@ export function Footer() {
   ]
 
   return (
-    <footer ref={sectionRef} className="text-white relative overflow-hidden bg-primary">
-
+    <footer className="text-white relative overflow-hidden bg-primary">
       {/* Main Footer Content */}
       <div className="relative z-10 container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Brand Section - Left Aligned */}
-          <div 
-            id="footer-brand"
-            className={`space-y-6 transition-all duration-1000 delay-200 ${
-              getVisibility("footer-brand") 
-                ? "opacity-100 translate-y-0" 
-                : "opacity-0 translate-y-10"
-            }`}
-          >
+          {/* Brand Section */}
+          <div className="space-y-6">
             <div className="flex items-center space-x-3">
               <img
                 src={logo}
@@ -88,15 +41,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Services Section - Proper Alignment */}
-          <div 
-            id="footer-services"
-            className={`space-y-6 transition-all duration-1000 delay-400 ${
-              getVisibility("footer-services") 
-                ? "opacity-100 translate-y-0" 
-                : "opacity-0 translate-y-10"
-            }`}
-          >
+          {/* Services Section */}
+          <div className="space-y-6">
             <h3 className="text-[#f4c55c] text-xl font-bold relative inline-block pb-2">
               SERVICES
               <div className="absolute bottom-0 left-0 w-1/2 h-0.5 bg-gradient-to-r from-[#f4c55c] to-transparent"></div>
@@ -118,15 +64,8 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact Information - Better Alignment */}
-          <div 
-            id="footer-contact"
-            className={`space-y-6 transition-all duration-1000 delay-600 ${
-              getVisibility("footer-contact") 
-                ? "opacity-100 translate-y-0" 
-                : "opacity-0 translate-y-10"
-            }`}
-          >
+          {/* Contact Information */}
+          <div className="space-y-6">
             <h3 className="text-[#f4c55c] text-xl font-bold relative inline-block pb-2">
               CONTACT US
               <div className="absolute bottom-0 left-0 w-1/2 h-0.5 bg-gradient-to-r from-[#f4c55c] to-transparent"></div>
@@ -167,15 +106,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links Section - Added for better grid balance */}
-          <div 
-            id="footer-links"
-            className={`space-y-6 transition-all duration-1000 delay-800 ${
-              getVisibility("footer-links") 
-                ? "opacity-100 translate-y-0" 
-                : "opacity-0 translate-y-10"
-            }`}
-          >
+          {/* Quick Links Section */}
+          <div className="space-y-6">
             <h3 className="text-[#f4c55c] text-xl font-bold relative inline-block pb-2">
               QUICK LINKS
               <div className="absolute bottom-0 left-0 w-1/2 h-0.5 bg-gradient-to-r from-[#f4c55c] to-transparent"></div>
@@ -207,20 +139,12 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom Footer - Improved Alignment */}
+      {/* Bottom Footer */}
       <div className="relative z-10 border-t border-white/10 py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-8">
-            
-            {/* Social Media Icons - Centered on mobile */}
-            <div 
-              id="footer-social"
-              className={`flex items-center justify-center lg:justify-start space-x-5 transition-all duration-1000 delay-1000 ${
-                getVisibility("footer-social") 
-                  ? "opacity-100 translate-y-0" 
-                  : "opacity-0 translate-y-10"
-              }`}
-            >
+            {/* Social Media Icons */}
+            <div className="flex items-center justify-center lg:justify-start space-x-5">
               <a href="#" className="group w-12 h-12 bg-white/5 rounded-full flex items-center justify-center border border-white/10 hover:border-[#f4c55c] hover:bg-[#f4c55c]/10 transition-all duration-300">
                 <Facebook className="w-5 h-5 text-white group-hover:text-[#f4c55c] transition-colors" />
               </a>
@@ -232,15 +156,8 @@ export function Footer() {
               </a>
             </div>
 
-            {/* Legal Links - Centered */}
-            <div 
-              id="footer-legal"
-              className={`flex items-center justify-center flex-wrap gap-6 lg:gap-8 transition-all duration-1000 delay-1200 ${
-                getVisibility("footer-legal") 
-                  ? "opacity-100 translate-y-0" 
-                  : "opacity-0 translate-y-10"
-              }`}
-            >
+            {/* Legal Links */}
+            <div className="flex items-center justify-center flex-wrap gap-6 lg:gap-8">
               <a href="#" className="text-gray-300 hover:text-[#f4c55c] transition-colors duration-300 text-sm font-medium relative group whitespace-nowrap">
                 Terms and Conditions
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#f4c55c] group-hover:w-full transition-all duration-300"></span>
@@ -251,15 +168,8 @@ export function Footer() {
               </a>
             </div>
 
-            {/* Copyright - Right aligned on desktop */}
-            <div 
-              id="footer-copyright"
-              className={`text-gray-300 text-sm font-medium bg-white/5 px-6 py-3 rounded-full border border-white/10 transition-all duration-1000 delay-1400 ${
-                getVisibility("footer-copyright") 
-                  ? "opacity-100 translate-y-0" 
-                  : "opacity-0 translate-y-10"
-              }`}
-            >
+            {/* Copyright */}
+            <div className="text-gray-300 text-sm font-medium bg-white/5 px-6 py-3 rounded-full border border-white/10">
               © VELUX Car Care | 2024
             </div>
           </div>
