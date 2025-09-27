@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react"
 import first from "../../assets/homepage/pexels-ammy-k-106103999-9552475 1.png"
 
@@ -40,10 +40,107 @@ const testimonials = [
   },
 ]
 
+// Define the type for visibility state
+type VisibilityState = {
+  [key: string]: boolean;
+}
+
 export function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [typingText, setTypingText] = useState("")
+  const [typingIndex, setTypingIndex] = useState(0)
+  const [isTyping, setIsTyping] = useState(true)
+  const [currentLine, setCurrentLine] = useState(0)
+  const [isVisible, setIsVisible] = useState<VisibilityState>({})
+  const typingTimeoutRef = useRef<NodeJS.Timeout>()
+  const sectionRef = useRef<HTMLElement>(null)
 
+  const headingLines = [
+    "What Our Clients Say",
+    "Trusted by Thousands"
+  ]
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible((prev) => ({
+            ...prev,
+            [entry.target.id]: entry.isIntersecting,
+          }))
+          
+          // Start typing animation when section becomes visible
+          if (entry.isIntersecting && entry.target.id === "testimonials-section") {
+            setIsTyping(true)
+            setTypingText("")
+            setTypingIndex(0)
+            setCurrentLine(0)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    // Observe all elements with IDs within this section
+    if (sectionRef.current) {
+      const elements = sectionRef.current.querySelectorAll("[id]")
+      elements.forEach((el) => {
+        observer.observe(el)
+      })
+      
+      // Also observe the section itself
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Typing animation effect
+  useEffect(() => {
+    if (!isTyping) return
+
+    // Add bounds checking
+    if (currentLine >= headingLines.length) {
+      setIsTyping(false)
+      return
+    }
+
+    const currentLineText = headingLines[currentLine]
+    
+    // Add safety check
+    if (!currentLineText) {
+      setIsTyping(false)
+      return
+    }
+    
+    if (typingIndex < currentLineText.length) {
+      typingTimeoutRef.current = setTimeout(() => {
+        setTypingText(currentLineText.substring(0, typingIndex + 1))
+        setTypingIndex(prev => prev + 1)
+      }, 50)
+    } else {
+      // Move to next line or stop
+      if (currentLine < headingLines.length - 1) {
+        setTimeout(() => {
+          setCurrentLine(prev => prev + 1)
+          setTypingIndex(0)
+          setTypingText("")
+        }, 300)
+      } else {
+        setIsTyping(false)
+      }
+    }
+
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current)
+      }
+    }
+  }, [typingIndex, isTyping, currentLine, headingLines])
+
+  // Auto-play testimonials
   useEffect(() => {
     if (!isAutoPlaying) return
 
@@ -66,6 +163,11 @@ export function TestimonialsSection() {
     setCurrentIndex(index)
   }
 
+  // Helper function to check visibility with fallback
+  const getVisibility = (id: string): boolean => {
+    return isVisible[id] || false
+  }
+
   const StarRating = ({ rating }: { rating: number }) => {
     return (
       <div className="flex gap-1">
@@ -82,17 +184,43 @@ export function TestimonialsSection() {
   }
 
   return (
-    <section className="py-16 lg:py-24 relative overflow-hidden bg-primary">
+    <section ref={sectionRef} id="testimonials-section" className="py-16 lg:py-24 relative overflow-hidden bg-primary font-family-secondary">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-secondary/15 rounded-full -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/15 rounded-full translate-x-1/2 translate-y-1/2" />
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold mb-4">
-            <span className="text-secondary">What Our</span>{" "}
-            <span className="text-white">Clients Say</span>
+        {/* Section Header with Typing Animation */}
+        <div 
+          id="testimonials-header"
+          className={`text-center mb-12 lg:mb-16 transition-all duration-1000 ${
+            getVisibility("testimonials-header") 
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 translate-y-10"
+          }`}
+        >
+          <h2 className="text-3xl lg:text-5xl font-family-sans font-bold mb-4 min-h-[1.2em]">
+            {currentLine === 0 ? (
+              <>
+                <span className="text-secondary">
+                  {typingText.substring(0, 7)}
+                  {isTyping && currentLine === 0 && typingText.length < 7 && (
+                    <span className="inline-block w-2 h-[1.2em] bg-secondary ml-1 animate-pulse align-middle" />
+                  )}
+                </span>
+                <span className="text-white">
+                  {typingText.length > 7 ? typingText.substring(7) : ""}
+                  {isTyping && currentLine === 0 && typingText.length >= 7 && (
+                    <span className="inline-block w-2 h-[1.2em] bg-white ml-1 animate-pulse align-middle" />
+                  )}
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="text-secondary">What Our</span>{" "}
+                <span className="text-white">Clients Say</span>
+              </>
+            )}
           </h2>
           <p className="text-white text-lg max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our valued customers have to say about their experience.
@@ -101,7 +229,14 @@ export function TestimonialsSection() {
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
           {/* Left Side - Testimonial Content */}
-          <div className="relative">
+          <div 
+            id="testimonials-content"
+            className={`relative transition-all duration-1000 delay-300 ${
+              getVisibility("testimonials-content") 
+                ? "opacity-100 translate-x-0" 
+                : "opacity-0 -translate-x-20"
+            }`}
+          >
             <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-xl border border-gray-100 min-h-[400px] flex flex-col justify-center relative overflow-hidden">
               {/* Quote Icon */}
               <div className="absolute top-6 right-6 text-black">
@@ -109,7 +244,7 @@ export function TestimonialsSection() {
               </div>
               
               {/* Decorative Border */}
-              <div className="absolute left-0 top-0 h-full w-2 bg-secondary " />
+              <div className="absolute left-0 top-0 h-full w-2 bg-secondary" />
               
               <div className="relative z-10">
                 {/* Rating Stars */}
@@ -125,7 +260,7 @@ export function TestimonialsSection() {
                 {/* Client Info */}
                 <div className="flex items-center gap-4">
                   <div className="relative">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-r from-seconfill-secondary  p-0.5">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-r from-secondary p-0.5">
                       <img
                         src={testimonials[currentIndex].avatar || "/placeholder.svg"}
                         alt={testimonials[currentIndex].name}
@@ -134,7 +269,7 @@ export function TestimonialsSection() {
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-seconfill-secondary text-lg">{testimonials[currentIndex].name}</h4>
+                    <h4 className="font-semibold text-secondary text-lg">{testimonials[currentIndex].name}</h4>
                     <p className="text-gray-600 text-sm">Satisfied Customer</p>
                   </div>
                 </div>
@@ -170,7 +305,7 @@ export function TestimonialsSection() {
                 <button
                   onClick={nextTestimonial}
                   onMouseEnter={() => setIsAutoPlaying(false)}
-                  className="p-3 rounded-full bg-secondary shadow-lg border border-seconfill-secondary transition-all duration-300 hover:scale-110"
+                  className="p-3 rounded-full bg-secondary shadow-lg border border-secondary transition-all duration-300 hover:scale-110"
                 >
                   <ChevronRight className="w-5 h-5 text-white" />
                 </button>
@@ -179,7 +314,14 @@ export function TestimonialsSection() {
           </div>
 
           {/* Right Side - Visual Section */}
-          <div className="relative">
+          <div 
+            id="testimonials-visual"
+            className={`relative transition-all duration-1000 delay-500 ${
+              getVisibility("testimonials-visual") 
+                ? "opacity-100 translate-x-0" 
+                : "opacity-0 translate-x-20"
+            }`}
+          >
             <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
               <img 
                 src={first} 
@@ -188,7 +330,7 @@ export function TestimonialsSection() {
               />
               
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-seconfill-secondary/20 to-black/60" />
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-black/60" />
               
               {/* Content Overlay */}
               <div className="absolute inset-0 flex flex-col justify-center items-center p-8 text-center">
@@ -196,7 +338,7 @@ export function TestimonialsSection() {
                   <Quote className="w-12 h-12 text-white mb-4 mx-auto" />
                   <h3 className="text-4xl lg:text-5xl font-bold text-white mb-2">
                     Trusted by{" "}
-                    <span className="text-seconfill-secondary">1000+</span>
+                    <span className="text-secondary">1000+</span>
                   </h3>
                   <p className="text-white/90 text-lg">Satisfied Car Owners</p>
                   

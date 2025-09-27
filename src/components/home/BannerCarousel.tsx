@@ -32,12 +32,13 @@ export default function BannerCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
+  // Auto slide effect
   useEffect(() => {
     if (!isAutoPlaying) return
 
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % bannerSlides.length)
-    }, 2000)
+    }, 3000)
 
     return () => clearInterval(interval)
   }, [isAutoPlaying])
@@ -55,88 +56,98 @@ export default function BannerCarousel() {
   }
 
   return (
-    <div
-      className="relative w-full h-[400px] md:h-[500px] lg:h-[800px] overflow-hidden"
-      onMouseEnter={() => setIsAutoPlaying(false)}
-      onMouseLeave={() => setIsAutoPlaying(true)}
-    >
-      {/* Slides Container */}
+    <div className="px-4 sm:px-6 lg:px-4 xl:px-6 py-6 md:py-8 lg:py-12">
       <div
-        className="flex transition-transform duration-700 ease-in-out h-full"
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] xl:h-[825px] overflow-hidden rounded-3xl md:rounded-4xl lg:rounded-3xl shadow-2xl"
+        onMouseEnter={() => setIsAutoPlaying(false)}
+        onMouseLeave={() => setIsAutoPlaying(true)}
       >
-        {bannerSlides.map((slide) => (
-          <div key={slide.id} className="relative w-full h-full flex-shrink-0">
-            {/* Background Image */}
-            <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: `url(${slide.image})` }}
-            >
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/50" />
+        {/* Slides Container */}
+        <div
+          className="flex transition-transform duration-700 ease-in-out h-full"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {bannerSlides.map((slide, index) => (
+            <div key={slide.id} className="relative w-full h-full flex-shrink-0">
+              {/* Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: `url(${slide.image})` }}
+              />
               
-              {/* Bottom Gradient Overlay */}
-              {/* <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#021d49] via-[#021d49]/10 to-transparent" /> */}
-            </div>
-
-            {/* Content */}
-            <div className="relative z-10 h-full flex items-center text-white px-4 sm:px-6 lg:px-8">
-              <div className="max-w-full mx-auto w-full">
-                <div className="animate-fade-in-up text-left">
-                  <p className="text-sm md:text-base lg:text-lg font-medium text-secondary mb-2 md:mb-4">
-                    {slide.subtitle}
-                  </p>
-                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-                    {slide.title}
-                  </h1>
-                  <p className="text-base md:text-lg lg:text-xl text-gray-200 max-w-2xl mb-6 md:mb-8">
-                    {slide.description}
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <button className="bg-secondary text-black font-semibold px-6 md:px-8 py-3 md:py-4 rounded-lg transition-colors duration-300 w-fit transform hover:scale-105">
-                      Get Started
-                    </button>
-                    <button className="border-2 border-white hover:bg-white hover:text-black text-white font-semibold px-6 md:px-8 py-3 md:py-4 rounded-lg transition-colors duration-300 w-fit transform hover:scale-105">
-                      Learn More
-                    </button>
+              {/* Content Container with Safe Area */}
+              <div className="relative z-10 h-full flex items-center">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[90rem]">
+                  <div className="max-w-2xl xl:max-w-3xl w-full bg-white/5 backdrop-blur-sm shadow-2xl border border-white/20 p-6 rounded-4xl">
+                    <div className={`space-y-4 md:space-y-6 transition-all duration-500 ${
+                      currentSlide === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    }`}>
+                      {/* Subtitle with accent line */}
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-12 h-0.5 bg-secondary rounded-full" />
+                        <p className="text-sm md:text-base font-family-secondary lg:text-lg font-semibold text-secondary tracking-wider uppercase">
+                          {slide.subtitle}
+                        </p>
+                      </div>
+                      
+                      {/* Main Title - Simple display without typing animation */}
+                      <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight bg-white bg-clip-text text-transparent">
+                        {slide.title}
+                      </h1>
+                      
+                      {/* Description */}
+                      <p className="text-lg md:text-xl font-family-secondary lg:text-2xl text-white leading-relaxed max-w-2xl font-light">
+                        {slide.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 md:p-3 rounded-full transition-colors duration-300 z-20 backdrop-blur-sm"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
-      </button>
-      <button
-        onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 md:p-3 rounded-full transition-colors duration-300 z-20 backdrop-blur-sm"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
-      </button>
+        {/* Navigation Arrows */}
+        <button
+          onClick={goToPrevious}
+          className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 md:p-4 rounded-xl transition-all duration-300 z-20 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-110 shadow-2xl"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+        </button>
+        
+        <button
+          onClick={goToNext}
+          className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 md:p-4 rounded-xl transition-all duration-300 z-20 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-110 shadow-2xl"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+        </button>
 
-      {/* Dots Indicator */}
-      <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
-        {bannerSlides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 md:w-4 md:h-4 rounded-full transition-all duration-300 ${
-              index === currentSlide 
-                ? "bg-secondary scale-125" 
-                : "bg-white/50 hover:bg-white/75"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+        {/* Dots Indicator */}
+        <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-20 backdrop-blur-md bg-black/20 rounded-2xl p-3 border border-white/10">
+          {bannerSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`relative transition-all duration-300 ${
+                index === currentSlide 
+                  ? "scale-125" 
+                  : "hover:scale-110"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            >
+              <div className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide 
+                  ? "bg-secondary shadow-lg shadow-secondary/50" 
+                  : "bg-white/50 hover:bg-white/75"
+              }`} />
+              {index === currentSlide && (
+                <div className="absolute inset-0 rounded-full bg-secondary animate-ping opacity-30" />
+              )}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   )

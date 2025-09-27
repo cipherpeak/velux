@@ -22,7 +22,7 @@ const services = [
     title: "Interior Detailing",
     description: "Deep cleaning and conditioning of all interior surfaces, seats, and carpets.",
     features: ["Leather conditioning", "Steam cleaning", "Odor elimination"],
-    link: "/interior-detailing"
+    link: "/coatings"
   },
   {
     image: second,
@@ -54,9 +54,83 @@ const services = [
   },
 ]
 
+// Define the type for visibility state
+type VisibilityState = {
+  [key: string]: boolean;
+}
+
 export function ServicesSection() {
+  const [typingText, setTypingText] = useState("")
+  const [typingIndex, setTypingIndex] = useState(0)
+  const [isTyping, setIsTyping] = useState(true)
+  const [isVisible, setIsVisible] = useState<VisibilityState>({})
+  const typingTimeoutRef = useRef<NodeJS.Timeout>()
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const headingText = "SIGNATURE SERVICES"
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible((prev) => ({
+            ...prev,
+            [entry.target.id]: entry.isIntersecting,
+          }))
+          
+          // Start typing animation when section becomes visible
+          if (entry.isIntersecting && entry.target.id === "services-section") {
+            setIsTyping(true)
+            setTypingText("")
+            setTypingIndex(0)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    // Observe all elements with IDs within this section
+    if (sectionRef.current) {
+      const elements = sectionRef.current.querySelectorAll("[id]")
+      elements.forEach((el) => {
+        observer.observe(el)
+      })
+      
+      // Also observe the section itself
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Typing animation effect
+  useEffect(() => {
+    if (!isTyping) return
+
+    if (typingIndex < headingText.length) {
+      typingTimeoutRef.current = setTimeout(() => {
+        setTypingText(headingText.substring(0, typingIndex + 1))
+        setTypingIndex(prev => prev + 1)
+      }, 100)
+    } else {
+      setIsTyping(false)
+    }
+
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current)
+      }
+    }
+  }, [typingIndex, isTyping, headingText])
+
+  // Helper function to check visibility with fallback
+  const getVisibility = (id: string): boolean => {
+    return isVisible[id] || false
+  }
+
   return (
-    <section className="relative overflow-hidden bg-primary">
+    <section ref={sectionRef} id="services-section" className="relative font-family-secondary overflow-hidden bg-primary">
       <div className="absolute inset-0 w-full h-full">
         {/* <img 
           src={acc1} 
@@ -68,24 +142,20 @@ export function ServicesSection() {
       </div>
 
       {/* Animated marquee */}
-      <div className="relative w-full overflow-hidden bg-secondary py-5"
-      
-      >
+      <div className="relative w-full overflow-hidden bg-secondary py-5">
         <div className="flex whitespace-nowrap">
           {Array.from({ length: 8 }).map((_, i) => (
             <div key={i} className="flex items-center animate-marquee justify-between">
-              <span className="text-xl md:text-xl font-black text-black mx-8 tracking-wider uppercase">
+              <span className="text-xl md:text-xl font-medium text-black mx-8 tracking-wider uppercase">
                 PAINT PROTECTION FILM WRAPPING
               </span>
-              <span className="text-xl md:text-xl font-black text-black mx-8 tracking-wider uppercase">
-                PREMIUM 
-NANOCERAMIC COATING
+              <span className="text-xl md:text-xl font-medium text-black mx-8 tracking-wider uppercase">
+                PREMIUM NANOCERAMIC COATING
               </span>
-              <span className="text-xl md:text-xl font-black text-black mx-8 tracking-wider uppercase">
-                PREMIUM GRAPHENE
-COATING
+              <span className="text-xl md:text-xl font-medium text-black mx-8 tracking-wider uppercase">
+                PREMIUM GRAPHENE COATING
               </span>
-              <span className="text-xl md:text-xl font-black text-black mx-8 tracking-wider uppercase">
+              <span className="text-xl md:text-xl font-medium text-black mx-8 tracking-wider uppercase">
                 WINDOW TINTING
               </span>
             </div>
@@ -96,27 +166,50 @@ COATING
       <div className="relative py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Enhanced Section Header */}
-          <div className="text-center mb-20">
+          <div 
+            id="services-header"
+            className={`text-center mb-20 transition-all duration-1000 ${
+              getVisibility("services-header") 
+                ? "opacity-100 translate-y-0" 
+                : "opacity-0 translate-y-10"
+            }`}
+          >
             <div className="inline-block mb-4">
               <span className="text-secondary text-sm font-semibold tracking-widest uppercase border border-secondary px-4 py-2 rounded-full">
                 Our Services
               </span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 text-balance relative">
-              SIGNATURE SERVICES
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-secondary rounded-full"></div>
+            <h2 className="text-5xl md:text-6xl font-bold font-family-sans text-white mb-6 text-balance relative min-h-[1.2em]">
+              {typingText}
+              {isTyping && (
+                <span className="inline-block w-2 h-[1.2em] bg-secondary ml-1 animate-pulse align-middle" />
+              )}
+              {/* <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-secondary rounded-full"></div> */}
             </h2>
           </div>
 
           {/* Enhanced Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <ServiceCard key={index} service={service} index={index} />
+              <ServiceCard 
+                key={index} 
+                service={service} 
+                index={index} 
+                isVisible={getVisibility("services-section")}
+              />
             ))}
           </div>
 
           {/* CTA Section */}
-          <div className="text-center mt-16">
+          <div 
+            id="services-cta"
+            className={`text-center mt-16 transition-all duration-1000 ${
+              getVisibility("services-cta") 
+                ? "opacity-100 translate-y-0" 
+                : "opacity-0 translate-y-10"
+            }`}
+            style={{ transitionDelay: "600ms" }}
+          >
             <div className="inline-flex items-center space-x-4 text-white">
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-secondary rounded-full mr-2 animate-pulse"></div>
@@ -138,16 +231,26 @@ COATING
   )
 }
 
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
+function ServiceCard({ 
+  service, 
+  index, 
+  isVisible 
+}: { 
+  service: typeof services[0]; 
+  index: number;
+  isVisible: boolean;
+}) {
   const [isHovered, setIsHovered] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
+  const [cardVisible, setCardVisible] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
+        if (entry.isIntersecting && isVisible) {
+          setCardVisible(true)
+        } else if (!entry.isIntersecting) {
+          setCardVisible(false)
         }
       },
       { threshold: 0.1 }
@@ -158,15 +261,18 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
     }
 
     return () => observer.disconnect()
-  }, [])
+  }, [isVisible])
 
   return (
     <div
       ref={cardRef}
       className={`transform transition-all duration-700 ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+        cardVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
       }`}
-      style={{ transitionDelay: isVisible ? `${index * 100}ms` : "0ms" }}
+      style={{ 
+        transitionDelay: cardVisible ? `${index * 100}ms` : "0ms",
+        transitionProperty: 'transform, opacity'
+      }}
     >
       <div
         className="perspective-1000 h-80 cursor-pointer"

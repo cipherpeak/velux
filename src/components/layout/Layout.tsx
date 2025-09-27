@@ -6,8 +6,10 @@ function Layout() {
   return (
     <>
       <Header />
-       <Outlet />
-       <Footer/>
+      <main className="pt-16"> {/* Add padding-top equal to header height */}
+        <Outlet />
+      </main>
+      <Footer/>
     </>
   );
 }
