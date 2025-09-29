@@ -2,16 +2,36 @@ import { useState, useRef, useEffect } from "react";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import logo from "../../assets/logo/VE LUX LOGO 2.png";
 
-export default function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isServicesHovered, setIsServicesHovered] = useState(false);
-  const [activeNav, setActiveNav] = useState("Home");
-  const [ripple, setRipple] = useState({ x: 0, y: 0, isActive: false });
-  const navRef = useRef(null);
-  const servicesRef = useRef(null);
-  const timeoutRef = useRef(null);
+// Type definitions
+interface NavigationItem {
+  name: string;
+  href: string;
+  active?: boolean;
+  hasDropdown?: boolean;
+}
 
-  const navigationItems = [
+interface ServiceMenuItem {
+  name: string;
+  href: string;
+  description: string;
+}
+
+interface RippleState {
+  x: number;
+  y: number;
+  isActive: boolean;
+}
+
+export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [isServicesHovered, setIsServicesHovered] = useState<boolean>(false);
+  const [activeNav, setActiveNav] = useState<string>("Home");
+  const [ripple, setRipple] = useState<RippleState>({ x: 0, y: 0, isActive: false });
+  
+  const navRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const navigationItems: NavigationItem[] = [
     { name: "Home", href: "/", active: true },
     { name: "Services", href: "#", hasDropdown: true },
     { name: "Packages", href: "/packages" },
@@ -19,7 +39,7 @@ export default function Header() {
     { name: "Contact Us", href: "/contact" },
   ];
 
-  const servicesMenuItems = [
+  const servicesMenuItems: ServiceMenuItem[] = [
     { name: "Premium Detailing", href: "#", description: "Expert vehicle cleaning and protection" },
     { name: "Ceramic Coating", href: "#", description: "Long-lasting paint protection" },
     { name: "Paint Correction", href: "#", description: "Remove scratches and swirl marks" },
@@ -27,7 +47,7 @@ export default function Header() {
     { name: "Window Tinting", href: "#", description: "UV protection and privacy" },
   ];
 
-  const handleNavClick = (e, itemName) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, itemName: string): void => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -39,36 +59,36 @@ export default function Header() {
   };
 
   // Improved hover handling with delay
-  const handleServicesMouseEnter = () => {
+  const handleServicesMouseEnter = (): void => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
     setIsServicesHovered(true);
   };
 
-  const handleServicesMouseLeave = () => {
+  const handleServicesMouseLeave = (): void => {
     timeoutRef.current = setTimeout(() => {
       setIsServicesHovered(false);
     }, 300); // 300ms delay before closing
   };
 
   // Handle dropdown mouse enter
-  const handleDropdownMouseEnter = () => {
+  const handleDropdownMouseEnter = (): void => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
   };
 
   // Handle dropdown mouse leave
-  const handleDropdownMouseLeave = () => {
+  const handleDropdownMouseLeave = (): void => {
     timeoutRef.current = setTimeout(() => {
       setIsServicesHovered(false);
     }, 300); // 300ms delay before closing
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent): void => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -123,7 +143,7 @@ export default function Header() {
                 className="relative"
                 onMouseEnter={item.hasDropdown ? handleServicesMouseEnter : undefined}
                 onMouseLeave={item.hasDropdown ? handleServicesMouseLeave : undefined}
-                ref={item.hasDropdown ? servicesRef : null}
+                ref={item.hasDropdown ? servicesRef : undefined}
               >
                 <a
                   href={item.href}
@@ -229,8 +249,6 @@ export default function Header() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]"></div>
           
           <div className="relative px-6 py-6 space-y-3">
-
-
             {/* Mobile Navigation */}
             <nav className="space-y-2">
               {navigationItems.map((item) => (

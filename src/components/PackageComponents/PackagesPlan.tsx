@@ -160,7 +160,7 @@ function PackagesPlan() {
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
                     <div className="bg-secondary text-black px-6 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2">
                       <Star className="w-4 h-4 fill-current" />
-                      Most Popular
+                      Most Popular 
                     </div>
                   </div>
                 )}

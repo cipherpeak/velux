@@ -10,7 +10,7 @@ function ServiceIntro() {
   const [typingText, setTypingText] = useState("")
   const [typingIndex, setTypingIndex] = useState(0)
   const [isTyping, setIsTyping] = useState(false)
-  const typingTimeoutRef = useRef<NodeJS.Timeout>()
+  const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
 
   const headingText = "Professional Film Wrapping Services"

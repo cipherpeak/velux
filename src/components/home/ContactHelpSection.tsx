@@ -12,7 +12,7 @@ export function ContactHelpSection() {
   const [isTyping, setIsTyping] = useState(true)
   const [currentLine, setCurrentLine] = useState(0)
   const [isVisible, setIsVisible] = useState<VisibilityState>({})
-  const typingTimeoutRef = useRef<NodeJS.Timeout>()
+  const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
 
   const headingLines = [

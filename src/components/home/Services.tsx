@@ -6,7 +6,6 @@ import second from "../../assets/services/person-working-car-wrapping.jpg"
 import third from "../../assets/services/beautiful-car-interior-clean-up-service 1.png"
 import four from "../../assets/services/bee 1.png"
 import five from "../../assets/services/graphene bottle 2 1.png"
-import acc1 from "../../assets/accessories/VE-LUX-Brand-Guidlines_2025_Prog-V1-(sept04)2.png"
 import { Link } from "react-router-dom"
 
 const services = [
@@ -29,28 +28,28 @@ const services = [
     title: "Paint Protection",
     description: "Advanced paint protection films and ceramic coatings for long-lasting shine.",
     features: ["PPF installation", "Ceramic coating", "Paint sealant"],
-    link: "/paint-protection"
+    link: "/coatings"
   },
   {
     image: four,
     title: "Premium Wash",
     description: "Hand wash service with premium products and attention to every detail.",
     features: ["Hand washing", "Wheel cleaning", "Tire shine"],
-    link: "/premium-wash"
+    link: "/window-tinting"
   },
   {
     image: third,
     title: "Express Service",
     description: "Quick and efficient detailing service for busy schedules without compromising quality.",
     features: ["Quick wash", "Interior vacuum", "Window cleaning"],
-    link: "/express-service"
+    link: "/exterior-detailing"
   },
   {
     image: five,
     title: "VIP Package",
     description: "Our most comprehensive service combining all premium treatments.",
     features: ["Full detailing", "Protection coating", "Monthly maintenance"],
-    link: "/vip-package"
+    link: "/interior-detailing"
   },
 ]
 
@@ -64,7 +63,7 @@ export function ServicesSection() {
   const [typingIndex, setTypingIndex] = useState(0)
   const [isTyping, setIsTyping] = useState(true)
   const [isVisible, setIsVisible] = useState<VisibilityState>({})
-  const typingTimeoutRef = useRef<NodeJS.Timeout>()
+  const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
 
   const headingText = "SIGNATURE SERVICES"

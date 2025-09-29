@@ -1,8 +1,6 @@
 import { useState } from "react"
 import { Handshake, Award, Shield, Settings, Wrench, Users, Leaf, CreditCard } from "lucide-react"
-import acc12 from "../../assets/accessories/VE-LUX-Brand-Guidlines_2025_Prog-V1-(sept04).png"
-import car from "../../assets/landingPage/car  png.png"
-import ModelViewer from "./ModelViewer"
+
 
 interface Feature {
   title: string
@@ -73,14 +71,7 @@ export function WhyChooseUs() {
     <section className="relative overflow-hidden bg-primary font-family-secondary">
       {/* Full-screen ModelViewer */}
       <div className="absolute inset-0 w-full h-full">
-        <ModelViewer
-          url="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/ToyCar/glTF-Binary/ToyCar.glb"
-          width="100%"
-          height="100%"
-          environmentPreset="city"
-          autoRotate={true}
-          autoRotateSpeed={0.5}
-        />
+
       </div>
       
       {/* Content overlay */}
