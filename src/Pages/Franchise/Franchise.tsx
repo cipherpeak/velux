@@ -1,23 +1,5 @@
-"use client"
-
 import type React from "react"
 import { useState } from "react"
-import {
-  Users,
-  TrendingUp,
-  Award,
-  Target,
-  CheckCircle,
-  MapPin,
-  ArrowRight,
-  Star,
-  Shield,
-  Zap,
-  Globe,
-  DollarSign,
-  BarChart3,
-} from "lucide-react"
-import banner1 from "../../assets/servicePage/banner/servive banner.jpg"
 import FranchiseBanner from "../../components/FranchiseComponent/FranchiseBanner"
 import FranchiseRequerment from "../../components/FranchiseComponent/FranchiseRequerment"
 import WhyPartnerWithUs from "../../components/FranchiseComponent/WhyPartnerWithUs"

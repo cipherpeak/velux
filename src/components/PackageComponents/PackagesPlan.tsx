@@ -1,6 +1,5 @@
-import React from 'react'
 import { useState, useRef, useEffect } from "react"
-import { Check, Star, Sparkles, Shield, Car, Droplets, X, Calendar, User, MapPin } from "lucide-react"
+import { Check, Star, Sparkles, Shield, Car, Droplets, X, Calendar, User } from "lucide-react"
 
 function PackagesPlan() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)

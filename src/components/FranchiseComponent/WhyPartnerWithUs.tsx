@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react'
-import { Award, CheckCircle, Users, Shield, TrendingUp, Star } from "lucide-react"
+import { useRef } from 'react'
+import { Award, Users, Shield, TrendingUp, Star } from "lucide-react"
 import { useInView } from 'framer-motion'
 
 // Custom hook for fade-in animation
@@ -21,8 +21,6 @@ function WhyPartnerWithUs() {
   const headingAnim = useFadeInAnimation()
   const text1Anim = useFadeInAnimation(200)
   const text2Anim = useFadeInAnimation(400)
-  const feature1Anim = useFadeInAnimation(600)
-  const feature2Anim = useFadeInAnimation(800)
   const cardAnim = useFadeInAnimation(400)
 
   const benefits = [

@@ -1,5 +1,4 @@
-import React from 'react'
-import { Play, ChevronRight } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 import banner1 from "../../assets/servicePage/banner/servive banner.jpg"
 
 const bannerData = {

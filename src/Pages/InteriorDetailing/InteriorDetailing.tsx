@@ -1,5 +1,5 @@
 
-import { Droplets, Car, Phone, Shield, Heart, Wand2 } from 'lucide-react';
+import {  Car, Phone } from 'lucide-react';
 import InteriorBanner from '../../components/InteriorDetailing/InteriorBanner';
 import InteriorServiceSection from '../../components/InteriorDetailing/InteriorServiceSection';
 import InteriorBenefits from '../../components/InteriorDetailing/InteriorBenefits';
@@ -16,26 +16,6 @@ const InteriorDetailing = () => {
     'UV protection for leather and plastics'
   ];
 
-  const specialtyServices = [
-    {
-      icon: Droplets,
-      title: 'Stain Removal',
-      description: 'Advanced techniques using specialized cleaners to remove even the most stubborn stains from fabric and leather surfaces.',
-      features: ['Food & drink stains', 'Pet accidents', 'Ink removal', 'Oil & grease']
-    },
-    {
-      icon: Shield,
-      title: 'Odor Elimination',
-      description: 'Professional ozone treatment and deep cleaning techniques to eliminate odors permanently, not just mask them.',
-      features: ['Smoke removal', 'Pet odors', 'Food smells', 'Mildew treatment']
-    },
-    {
-      icon: Heart,
-      title: 'Leather Care',
-      description: 'Complete leather restoration including cleaning, conditioning, and protection to maintain that luxurious feel.',
-      features: ['Deep cleaning', 'Conditioning', 'Color restoration', 'Protection coating']
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-background">

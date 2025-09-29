@@ -1,4 +1,3 @@
-import React from 'react'
 import { ArrowRight, Star, Shield, Car } from "lucide-react"
 import banner1 from "../../assets/servicePage/banner/servive banner.jpg"
 

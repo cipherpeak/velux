@@ -1,5 +1,4 @@
-import React from 'react'
-import { MapPin, Clock, Car, Star, ChevronRight, Phone, Calendar } from "lucide-react"
+import { MapPin, Car, ChevronRight, Phone, Calendar } from "lucide-react"
 
 interface Store {
   city: string;
@@ -96,23 +95,8 @@ const stores: Store[] = [
 ]
 
 function OurStores() {
-  const getStatusColor = (status: Store["status"]) => {
-    switch (status) {
-      case "Active": return "bg-white";
-      case "Opening Soon": return "bg-white";
-      case "Coming Soon": return "bg-white";
-      default: return "bg-white";
-    }
-  }
 
-  const getStatusText = (status: Store["status"]) => {
-    switch (status) {
-      case "Active": return "text-green-600";
-      case "Opening Soon": return "text-orange-600";
-      case "Coming Soon": return "text-blue-600";
-      default: return "text-gray-600";
-    }
-  }
+
 
   return (
     <section className="py-20 px-4 relative overflow-hidden">

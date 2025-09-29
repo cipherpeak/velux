@@ -1,29 +1,11 @@
-"use client"
 
 import type React from "react"
-import { useState } from "react"
-import { Play, Shield, Droplets, Sparkles, Clock, Award, Zap, ChevronRight, Star } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 import CoatingBanner from "../../../components/coatingComponents/CoatingBanner"
 import CoatingSelection from "../../../components/coatingComponents/CoatingSelection"
 import BenifitsSelection from "../../../components/coatingComponents/BenifitsSelection"
 
 const CoatingPage: React.FC = () => {
-  const [activeGalleryFilter, setActiveGalleryFilter] = useState("all")
-
-
-
-  const galleryItems = [
-    { type: "image", src: "/luxury-car-with-ceramic-coating.jpg", category: "before-after" },
-    { type: "video", src: "/ceramic-coating-application-process.jpg", category: "process" },
-    { type: "image", src: "/graphene-coating-product-bottle.jpg", category: "products" },
-    { type: "image", src: "/car-paint-protection-film.jpg", category: "before-after" },
-    { type: "video", src: "/water-beading-on-coated-car.jpg", category: "results" },
-    { type: "image", src: "/professional-detailing-workspace.jpg", category: "process" },
-  ]
-
-  const filteredGallery =
-    activeGalleryFilter === "all" ? galleryItems : galleryItems.filter((item) => item.category === activeGalleryFilter)
-
 
   return (
     <div className="min-h-screen text-slate-900 font-family-secondary">

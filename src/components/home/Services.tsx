@@ -1,4 +1,3 @@
-"use client"
 
 import { useState, useEffect, useRef } from "react"
 import first from "../../assets/services/car-window-shield-060220210503.jpg"

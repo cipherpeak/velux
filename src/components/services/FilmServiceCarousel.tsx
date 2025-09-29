@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import banner1 from "../../assets/servicePage/banner/servive banner.jpg"
 
 function FilmServiceCarousel() {

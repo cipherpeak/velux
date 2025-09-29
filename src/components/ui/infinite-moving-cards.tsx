@@ -1,8 +1,7 @@
-"use client";
 
 import { cn } from "../../lib/utils";
 import React, { useEffect, useState } from "react";
-import { Star, StarHalf } from "lucide-react"; // You'll need to install lucide-react: npm install lucide-react
+import { Star } from "lucide-react"; 
 
 export const InfiniteMovingCards = ({
   items,

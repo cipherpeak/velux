@@ -1,4 +1,3 @@
-import React from 'react'
 import {  Car, Shield, Heart } from 'lucide-react';
 
 function InteriorBenefits() {

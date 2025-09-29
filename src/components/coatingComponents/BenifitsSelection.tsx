@@ -1,4 +1,3 @@
-import React from 'react'
 import { Shield, Droplets, Sparkles, Award, Zap,Clock } from "lucide-react"
 
 

@@ -20,8 +20,6 @@ const InteriorServiceSection = ({
   title, 
   description, 
   features, 
-  reverse = false,
-  pricing 
 }: ServiceSectionProps) => {
   return (
     <section className="py-16 md:py-24">

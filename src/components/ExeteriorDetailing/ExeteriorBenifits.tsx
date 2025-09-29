@@ -1,4 +1,3 @@
-import React from 'react'
 import {  Shield,  Zap, Gem } from 'lucide-react';
 
 function ExeteriorBenifits() {

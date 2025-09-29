@@ -1,4 +1,3 @@
-import React from 'react'
 import { Wand2, ChevronRight } from 'lucide-react';
 
 const bannerData = {

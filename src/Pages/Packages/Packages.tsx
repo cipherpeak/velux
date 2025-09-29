@@ -1,18 +1,8 @@
-"use client"
 
 import PackageBanner from "../../components/PackageComponents/PackageBanner"
 import PackagesPlan from "../../components/PackageComponents/PackagesPlan"
 
 const Packages = () => {
-
-
-  const addOns = [
-    { name: "Pet Hair Removal", price: 25 },
-    { name: "Stain Treatment", price: 35 },
-    { name: "Odor Elimination", price: 45 },
-    { name: "Engine Detailing", price: 55 },
-    { name: "Headlight Restoration", price: 65 },
-  ]
 
 
 

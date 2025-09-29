@@ -1,4 +1,4 @@
-import { Droplets, Shield, Sparkles, Car, Phone, Brush, Zap, Gem } from 'lucide-react';
+import {Car, Phone} from 'lucide-react';
 import ExeteriorBanner from '../../components/ExeteriorDetailing/ExeteriorBanner';
 import ExeteriorService from '../../components/ExeteriorDetailing/ExeteriorService';
 import ExeteriorBenifits from '../../components/ExeteriorDetailing/ExeteriorBenifits';

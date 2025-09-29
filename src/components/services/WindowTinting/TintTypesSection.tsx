@@ -1,4 +1,3 @@
-import React from 'react'
 import { Shield, Zap, Lock } from 'lucide-react';
 
   const tintTypes = [

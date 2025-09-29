@@ -1,4 +1,3 @@
-"use client"
 
 import { ArrowRight, Sparkles, Shield, Award, Star } from "lucide-react"
 import luxuary from "../../assets/homepage/introsec/pexels-victoria-ouarets-3535985-5288719 (1) 1.png"

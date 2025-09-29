@@ -1,5 +1,4 @@
-import React from 'react'
-import { Brush, ChevronRight } from 'lucide-react';
+import { Brush } from 'lucide-react';
 
 function ExeteriorBanner() {
   return (

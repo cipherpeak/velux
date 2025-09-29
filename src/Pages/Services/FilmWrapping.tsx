@@ -1,4 +1,3 @@
-import React from 'react'
 import FilmServiceCarousel from '../../components/services/FilmServiceCarousel'
 import ServiceIntro from './ServiceIntro'
 import PPFShowcase from '../../components/services/PPFShowcase'
