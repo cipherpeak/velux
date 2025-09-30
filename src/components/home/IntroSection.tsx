@@ -1,9 +1,7 @@
-
-import { ArrowRight, Sparkles, Shield, Award, Star } from "lucide-react"
+import { ArrowRight, Sparkles, Shield, Award, Star, Globe } from "lucide-react"
 import luxuary from "../../assets/homepage/introsec/pexels-victoria-ouarets-3535985-5288719 (1) 1.png"
 import { useState, useEffect, useRef } from "react"
 
-// Define the type for visibility state
 type VisibilityState = {
   [key: string]: boolean;
 }
@@ -18,8 +16,8 @@ export function IntroSection() {
   const sectionRef = useRef<HTMLElement>(null)
 
   const headingLines = [
-    "Detailing is not a skill,",
-    "It's an Attitude!"
+    "Quality Matters in",
+    "Every Detail!"
   ]
 
   // Intersection Observer for scroll animations
@@ -58,48 +56,48 @@ export function IntroSection() {
     return () => observer.disconnect()
   }, [])
 
-// Typing animation effect
-useEffect(() => {
-  if (!isTyping) return
+  // Typing animation effect
+  useEffect(() => {
+    if (!isTyping) return
 
-  // Add bounds checking
-  if (currentLine >= headingLines.length) {
-    setIsTyping(false)
-    return
-  }
-
-  const currentLineText = headingLines[currentLine]
-  
-  // Add safety check
-  if (!currentLineText) {
-    setIsTyping(false)
-    return
-  }
-  
-  if (typingIndex < currentLineText.length) {
-    typingTimeoutRef.current = setTimeout(() => {
-      setTypingText(currentLineText.substring(0, typingIndex + 1))
-      setTypingIndex(prev => prev + 1)
-    }, 50)
-  } else {
-    // Move to next line or stop
-    if (currentLine < headingLines.length - 1) {
-      setTimeout(() => {
-        setCurrentLine(prev => prev + 1)
-        setTypingIndex(0)
-        setTypingText("")
-      }, 300)
-    } else {
+    // Add bounds checking
+    if (currentLine >= headingLines.length) {
       setIsTyping(false)
+      return
     }
-  }
 
-  return () => {
-    if (typingTimeoutRef.current) {
-      clearTimeout(typingTimeoutRef.current)
+    const currentLineText = headingLines[currentLine]
+    
+    // Add safety check
+    if (!currentLineText) {
+      setIsTyping(false)
+      return
     }
-  }
-}, [typingIndex, isTyping, currentLine, headingLines])
+    
+    if (typingIndex < currentLineText.length) {
+      typingTimeoutRef.current = setTimeout(() => {
+        setTypingText(currentLineText.substring(0, typingIndex + 1))
+        setTypingIndex(prev => prev + 1)
+      }, 50)
+    } else {
+      // Move to next line or stop
+      if (currentLine < headingLines.length - 1) {
+        setTimeout(() => {
+          setCurrentLine(prev => prev + 1)
+          setTypingIndex(0)
+          setTypingText("")
+        }, 300)
+      } else {
+        setIsTyping(false)
+      }
+    }
+
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current)
+      }
+    }
+  }, [typingIndex, isTyping, currentLine, headingLines])
 
   // Helper function to check visibility with fallback
   const getVisibility = (id: string): boolean => {
@@ -137,7 +135,7 @@ useEffect(() => {
               <div className="absolute -bottom-4 z-50 -right-4 bg-secondary shadow-2xl rounded-2xl p-4 border-2">
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-black" />
-                  <span className="font-bold text-black text-sm">Premium Detailing</span>
+                  <span className="font-bold text-black text-sm">Premium Protection</span>
                 </div>
               </div>
 
@@ -146,10 +144,10 @@ useEffect(() => {
                 <div className="flex items-center gap-2">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 fill-setext-secondary text-secondary" />
+                      <Star key={i} className="w-3 h-3 fill-secondary text-secondary" />
                     ))}
                   </div>
-                  <span className="font-bold text-gray-900 text-xs">5-Star Rated</span>
+                  <span className="font-bold text-gray-900 text-xs">Since 2015</span>
                 </div>
               </div>
             </div>
@@ -168,8 +166,8 @@ useEffect(() => {
                 }`}
                 style={{ transitionDelay: "100ms" }}
               >
-                <Sparkles className="w-4 h-4" />
-                Premium Car Care Excellence
+                <Globe className="w-4 h-4" />
+                Global Car Care Excellence
               </div>
               
               <h2 
@@ -207,9 +205,9 @@ useEffect(() => {
               style={{ transitionDelay: "300ms" }}
             >
               <p className="text-white text-lg leading-relaxed">
-                Welcome to <span className="font-semibold text-secondary">The Detailing Mafia</span>: Your ultimate solution for premium car care. 
-                We believe "Perfection is in the Detail" and this philosophy has earned us the title 
-                <span className="font-semibold text-white"> "King of the Detailing World"</span> in the Automotive Industry.
+                Welcome to <span className="font-semibold text-secondary">Velux</span> - a subsidiary of Weinber Inc. NY, USA, 
+                and your trusted partner in premium automotive care solutions since 2015. 
+                We bring American manufacturing excellence to the Middle East and beyond.
               </p>
 
               <div className="space-y-4">
@@ -218,7 +216,7 @@ useEffect(() => {
                     <div className="w-2 h-2 bg-white rounded-full" />
                   </div>
                   <p className="text-white leading-relaxed">
-                    Our skilled team transforms ordinary cars into stunning masterpieces through meticulous attention to detail.
+                    Our formulas are second to none, developed in partnership with world leaders in car care manufacturing and technology.
                   </p>
                 </div>
                 <div className="flex items-start gap-4">
@@ -226,9 +224,9 @@ useEffect(() => {
                     <div className="w-2 h-2 bg-white rounded-full" />
                   </div>
                   <p className="text-white leading-relaxed">
-                    We offer advanced solutions like <span className="font-semibold text-white">Clarity Coat</span>,{" "}
-                    <span className="font-semibold text-white">Ceramic Coating</span>, and{" "}
-                    <span className="font-semibold text-white">Paint Protection Film</span> tailored to your vehicle's needs.
+                    We offer advanced protection solutions including <span className="font-semibold text-white">Nano Ceramic Coating</span>,{" "}
+                    <span className="font-semibold text-white">Graphene Coating</span>, and{" "}
+                    <span className="font-semibold text-white">Paint Protection Films</span> for ultimate vehicle protection.
                   </p>
                 </div>
               </div>
@@ -249,8 +247,8 @@ useEffect(() => {
                   <Shield className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <span className="font-semibold text-white block">5-Year Warranty</span>
-                  <span className="text-white text-sm">Quality Guaranteed</span>
+                  <span className="font-semibold text-white block">5-Year Protection</span>
+                  <span className="text-white text-sm">Ceramic Coating</span>
                 </div>
               </div>
               <div className="flex items-center gap-4 p-4 rounded-xl border border-secondary transition-all duration-300">
@@ -258,8 +256,8 @@ useEffect(() => {
                   <Award className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <span className="font-semibold text-white block">Award Winning</span>
-                  <span className="text-white text-sm">Industry Recognition</span>
+                  <span className="font-semibold text-white block">Global Reach</span>
+                  <span className="text-white text-sm">Middle East & Beyond</span>
                 </div>
               </div>
             </div>
@@ -275,7 +273,7 @@ useEffect(() => {
               style={{ transitionDelay: "500ms" }}
             >
               <button className="group relative bg-secondary from-setext-black to-setext-secondary hover:from-setext-secondary hover:to-setext-secondary text-gray-900 px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center gap-3 overflow-hidden">
-                <span className="relative z-10">Discover Our Services</span>
+                <span className="relative z-10">Explore Our Products</span>
                 <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
             </div>

@@ -5,36 +5,36 @@ import first from "../../assets/homepage/pexels-ammy-k-106103999-9552475 1.png"
 const testimonials = [
   {
     id: 1,
-    text: "Good detailing but 750 rupees is expensive and not sustainable for every week wash. Looking for a good 250 to 300 rupees good car wash centres",
-    name: "Mahesh Jangra",
+    text: "The ceramic coating from Velux has protected my car for over 3 years now. The hydrophobic properties are still as strong as day one. Amazing quality!",
+    name: "Ahmed Al Mansouri",
     avatar: "/professional-man-with-red-cap.jpg",
-    rating: 4,
+    rating: 5,
   },
   {
     id: 2,
-    text: "Excellent service! The team at Detailing Mafia transformed my car completely. Worth every penny and the attention to detail is incredible.",
-    name: "Priya Sharma",
+    text: "Professional service and exceptional results! The paint protection film installation was flawless. My luxury car looks showroom-new even after 2 years of daily use.",
+    name: "Sarah Johnson",
     avatar: "/professional-woman-smiling.png",
     rating: 5,
   },
   {
     id: 3,
-    text: "Best car detailing service in the city. Professional staff, quality products, and amazing results. My car looks brand new every time!",
-    name: "Rajesh Kumar",
+    text: "As a car dealership, we trust Velux for all our premium vehicle protection needs. Their graphene coating provides the ultimate shine and protection for our clients.",
+    name: "Mohammed Hassan",
     avatar: "/businessman-with-glasses.jpg",
     rating: 5,
   },
   {
     id: 4,
-    text: "Outstanding work! The ceramic coating service exceeded my expectations. Highly recommend Detailing Mafia for premium car care.",
-    name: "Anita Patel",
+    text: "The nano ceramic coating exceeded my expectations. The self-cleaning feature saves me so much time on maintenance. Worth every dirham for the 5-year protection.",
+    name: "Fatima Al Rais",
     avatar: "/professional-woman-short-hair.png",
     rating: 5,
   },
   {
     id: 5,
-    text: "Amazing experience! The team is professional, punctual, and delivers exceptional results. My luxury car is in safe hands with them.",
-    name: "Vikram Singh",
+    text: "Outstanding workmanship! The window tinting combined with paint protection has kept my car cool and protected in the Dubai heat. Professional team and premium products.",
+    name: "David Chen",
     avatar: "/professional-bearded-man.png",
     rating: 5,
   },
@@ -57,8 +57,8 @@ export function TestimonialsSection() {
   const sectionRef = useRef<HTMLElement>(null)
 
   const headingLines = [
-    "What Our Clients Say",
-    "Trusted by Thousands"
+    "Client Experiences",
+    "Trusted Across Continents"
   ]
 
   // Intersection Observer for scroll animations
@@ -217,13 +217,13 @@ export function TestimonialsSection() {
               </>
             ) : (
               <>
-                <span className="text-secondary">What Our</span>{" "}
-                <span className="text-white">Clients Say</span>
+                <span className="text-secondary">Client</span>{" "}
+                <span className="text-white">Experiences</span>
               </>
             )}
           </h2>
           <p className="text-white text-lg max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our valued customers have to say about their experience.
+            Discover why customers across GCC, MENA, Asia, and Africa trust Velux for premium automotive protection solutions.
           </p>
         </div>
 
@@ -270,7 +270,7 @@ export function TestimonialsSection() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-secondary text-lg">{testimonials[currentIndex].name}</h4>
-                    <p className="text-gray-600 text-sm">Satisfied Customer</p>
+                    <p className="text-gray-600 text-sm">Satisfied Client</p>
                   </div>
                 </div>
               </div>
@@ -325,7 +325,7 @@ export function TestimonialsSection() {
             <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
               <img 
                 src={first} 
-                alt="Detailing Mafia Cars"
+                alt="Velux Protected Cars"
                 className="w-full h-full object-cover"
               />
               
@@ -337,10 +337,10 @@ export function TestimonialsSection() {
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
                   <Quote className="w-12 h-12 text-white mb-4 mx-auto" />
                   <h3 className="text-4xl lg:text-5xl font-bold text-white mb-2">
-                    Trusted by{" "}
-                    <span className="text-secondary">1000+</span>
+                    Trusted in{" "}
+                    <span className="text-secondary">20+</span>
                   </h3>
-                  <p className="text-white/90 text-lg">Satisfied Car Owners</p>
+                  <p className="text-white/90 text-lg">Countries Worldwide</p>
                   
                   {/* Stats */}
                   <div className="grid grid-cols-3 gap-6 mt-8">
@@ -349,12 +349,12 @@ export function TestimonialsSection() {
                       <div className="text-white/80 text-sm">Average Rating</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-white">500+</div>
-                      <div className="text-white/80 text-sm">Cars Detailed</div>
+                      <div className="text-2xl font-bold text-white">1000+</div>
+                      <div className="text-white/80 text-sm">Cars Protected</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-white">98%</div>
-                      <div className="text-white/80 text-sm">Satisfaction</div>
+                      <div className="text-2xl font-bold text-white">99%</div>
+                      <div className="text-white/80 text-sm">Client Satisfaction</div>
                     </div>
                   </div>
                 </div>

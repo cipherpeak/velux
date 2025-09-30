@@ -110,7 +110,7 @@ export default function BannerCarousel() {
         {/* Navigation Arrows */}
         <button
           onClick={goToPrevious}
-          className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 md:p-4 rounded-xl transition-all duration-300 z-20 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-110 shadow-2xl"
+          className="absolute left-4 md:left-6 hidden md:block top-1/2  -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 md:p-4 rounded-xl transition-all duration-300 z-20 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-110 shadow-2xl"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
@@ -118,7 +118,7 @@ export default function BannerCarousel() {
         
         <button
           onClick={goToNext}
-          className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 md:p-4 rounded-xl transition-all duration-300 z-20 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-110 shadow-2xl"
+          className="absolute right-4 md:right-6 hidden md:block top-1/2  -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white p-3 md:p-4 rounded-xl transition-all duration-300 z-20 backdrop-blur-md border border-white/10 hover:border-white/20 hover:scale-110 shadow-2xl"
           aria-label="Next slide"
         >
           <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />

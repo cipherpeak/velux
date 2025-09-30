@@ -84,7 +84,7 @@ function ServiceIntro() {
             {/* Badge */}
             <div 
               id="service-badge"
-              className={`inline-flex items-center px-4 py-2 rounded-full bg-white border border-secondary transition-all duration-1000 ${
+              className={`inline-flex items-center px-4 py-2 rounded-full border border-secondary transition-all duration-1000 ${
                 getVisibility("service-badge") 
                   ? "opacity-100 translate-x-0" 
                   : "opacity-0 -translate-x-20"

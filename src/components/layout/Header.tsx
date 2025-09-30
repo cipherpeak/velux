@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import logo from "../../assets/logo/VE LUX LOGO 2.png";
+import { useLocation } from "react-router-dom"; // Import useLocation
 
 // Type definitions
 interface NavigationItem {
   name: string;
   href: string;
-  active?: boolean;
   hasDropdown?: boolean;
 }
 
@@ -25,14 +25,18 @@ interface RippleState {
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isServicesHovered, setIsServicesHovered] = useState<boolean>(false);
-  const [activeNav, setActiveNav] = useState<string>("Home");
   const [ripple, setRipple] = useState<RippleState>({ x: 0, y: 0, isActive: false });
   
   const navRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  
+  // Get current location
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const navigationItems: NavigationItem[] = [
-    { name: "Home", href: "/", active: true },
+    { name: "Home", href: "/" },
     { name: "Services", href: "#", hasDropdown: true },
     { name: "Packages", href: "/packages" },
     { name: "Franchise", href: "/franchise" },
@@ -47,13 +51,23 @@ export default function Header() {
     { name: "Window Tinting", href: "#", description: "UV protection and privacy" },
   ];
 
+  // Function to check if a nav item is active
+  const isNavItemActive = (item: NavigationItem): boolean => {
+    if (item.href === "/" && currentPath === "/") {
+      return true;
+    }
+    if (item.href !== "/" && item.href !== "#" && currentPath.startsWith(item.href)) {
+      return true;
+    }
+    return false;
+  };
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, itemName: string): void => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
     setRipple({ x, y, isActive: true });
-    setActiveNav(itemName);
     
     setTimeout(() => setRipple({ x: 0, y: 0, isActive: false }), 600);
   };
@@ -149,7 +163,7 @@ export default function Header() {
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.name)}
                   className={`relative flex items-center text-sm font-semibold transition-all duration-500 px-6 py-3 rounded-2xl overflow-hidden group ${
-                    activeNav === item.name
+                    isNavItemActive(item)
                       ? "text-secondary bg-white/15 backdrop-blur-xl shadow-2xl border border-white/20"
                       : "text-white/90 hover:text-secondary hover:bg-white/10 hover:border-white/10 border border-transparent"
                   }`}
@@ -265,7 +279,7 @@ export default function Header() {
                       }
                     }}
                     className={`flex items-center justify-between text-sm font-semibold transition-all duration-500 p-4 rounded-2xl group border ${
-                      activeNav === item.name
+                      isNavItemActive(item)
                         ? "text-secondary bg-white/15 backdrop-blur-xl border-white/20"
                         : "text-white/90 hover:text-secondary hover:bg-white/10 border-white/10"
                     }`}

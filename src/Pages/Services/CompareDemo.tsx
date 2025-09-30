@@ -23,7 +23,7 @@ export function CompareDemo() {
       </div>
       
       {/* Second Image Heading - Bottom Right */}
-      <div className="absolute bottom-4 right-4 z-40 bg-gradient-to-r from-green-500/90 to-green-600/70 backdrop-blur-md text-white px-4 py-2 rounded-full border-2 border-white/30 shadow-lg">
+      <div className="absolute bottom-4 right-4 z-40 bg-primary backdrop-blur-md text-white px-4 py-2 rounded-full border-2 border-white/30 shadow-lg">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-white rounded-full"></div>
           <h3 className="text-sm font-bold uppercase tracking-wide">After Service</h3>

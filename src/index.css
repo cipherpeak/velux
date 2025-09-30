@@ -34,9 +34,9 @@ body {
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
-.animate-marquee:hover {
+/* .animate-marquee:hover {
   animation-play-state: paused;
-}
+} */
 
 .perspective-1000 {
   perspective: 1000px;

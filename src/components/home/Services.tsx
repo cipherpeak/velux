@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react"
 import first from "../../assets/services/car-window-shield-060220210503.jpg"
 import second from "../../assets/services/person-working-car-wrapping.jpg"
@@ -9,50 +8,49 @@ import { Link } from "react-router-dom"
 
 const services = [
   {
-    image: "https://lirp.cdn-website.com/443aa17f/dms3rep/multi/opt/car+detailing+the+works+auto+center-640w.jpg",
-    title: "Exterior Detailing",
-    description: "Complete exterior wash, wax, and protection for your vehicle's paint and finish.",
-    features: ["Paint correction", "Ceramic coating", "Chrome polishing"],
+    image: second,
+    title: "Paint Protection Film",
+    description: "Advanced paint protection films with self-healing technology and superior surface protection.",
+    features: ["Self-healing properties", "Anti-scratch", "Hydrophobic coating", "Anti-yellowing"],
     link: "/film-wrapping"
   },
   {
-    image: first,
-    title: "Interior Detailing",
-    description: "Deep cleaning and conditioning of all interior surfaces, seats, and carpets.",
-    features: ["Leather conditioning", "Steam cleaning", "Odor elimination"],
-    link: "/coatings"
-  },
-  {
-    image: second,
-    title: "Paint Protection",
-    description: "Advanced paint protection films and ceramic coatings for long-lasting shine.",
-    features: ["PPF installation", "Ceramic coating", "Paint sealant"],
+    image: five,
+    title: "Nano Ceramic Coating",
+    description: "Premium ceramic coating that creates a hard shield with up to 5 years of protection.",
+    features: ["5-year durability", "High gloss finish", "UV resistant", "Self-cleaning"],
     link: "/coatings"
   },
   {
     image: four,
-    title: "Premium Wash",
-    description: "Hand wash service with premium products and attention to every detail.",
-    features: ["Hand washing", "Wheel cleaning", "Tire shine"],
+    title: "Graphene Coating",
+    description: "Next-generation graphene coating providing superior hardness and hydrophobic properties.",
+    features: ["10H+ hardness", "Super hydrophobic", "Long-lasting protection", "High gloss"],
+    link: "/coatings"
+  },
+  {
+    image: first,
+    title: "Window Tinting",
+    description: "Professional window tinting services for enhanced privacy, UV protection, and style.",
+    features: ["UV protection", "Heat reduction", "Privacy enhancement", "Aesthetic appeal"],
     link: "/window-tinting"
   },
   {
     image: third,
-    title: "Express Service",
-    description: "Quick and efficient detailing service for busy schedules without compromising quality.",
-    features: ["Quick wash", "Interior vacuum", "Window cleaning"],
+    title: "Exterior Detailing",
+    description: "Complete exterior restoration and protection service for show-quality finish.",
+    features: ["Paint correction", "Polishing", "Finishing", "Protection"],
     link: "/exterior-detailing"
   },
   {
-    image: five,
-    title: "VIP Package",
-    description: "Our most comprehensive service combining all premium treatments.",
-    features: ["Full detailing", "Protection coating", "Monthly maintenance"],
+    image: "https://lirp.cdn-website.com/443aa17f/dms3rep/multi/opt/car+detailing+the+works+auto+center-640w.jpg",
+    title: "Interior Detailing",
+    description: "Thorough interior cleaning, restoration and protection of all surfaces.",
+    features: ["Deep cleaning", "Leather conditioning", "Surface protection", "Odor elimination"],
     link: "/interior-detailing"
   },
 ]
 
-// Define the type for visibility state
 type VisibilityState = {
   [key: string]: boolean;
 }
@@ -65,7 +63,7 @@ export function ServicesSection() {
   const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
 
-  const headingText = "SIGNATURE SERVICES"
+  const headingText = "OUR SERVICES"
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -132,7 +130,7 @@ export function ServicesSection() {
       <div className="absolute inset-0 w-full h-full">
         {/* <img 
           src={acc1} 
-          alt="Detailing Mafia Background" 
+          alt="Velux Background" 
           className="w-46 h-full object-cover"
         /> */}
         {/* Dark Overlay */}
@@ -140,20 +138,20 @@ export function ServicesSection() {
       </div>
 
       {/* Animated marquee */}
-      <div className="relative w-full overflow-hidden bg-secondary py-5">
+      <div className="relative w-full overflow-hidden bg-white/30 backdrop-blur-lg  text-white border border-secondary py-5">
         <div className="flex whitespace-nowrap">
           {Array.from({ length: 8 }).map((_, i) => (
             <div key={i} className="flex items-center animate-marquee justify-between">
-              <span className="text-xl md:text-xl font-medium text-black mx-8 tracking-wider uppercase">
+              <span className="text-xl md:text-xl font-medium mx-8 tracking-wider uppercase">
                 PAINT PROTECTION FILM WRAPPING
               </span>
-              <span className="text-xl md:text-xl font-medium text-black mx-8 tracking-wider uppercase">
+              <span className="text-xl md:text-xl font-medium mx-8 tracking-wider uppercase">
                 PREMIUM NANOCERAMIC COATING
               </span>
-              <span className="text-xl md:text-xl font-medium text-black mx-8 tracking-wider uppercase">
+              <span className="text-xl md:text-xl font-medium mx-8 tracking-wider uppercase">
                 PREMIUM GRAPHENE COATING
               </span>
-              <span className="text-xl md:text-xl font-medium text-black mx-8 tracking-wider uppercase">
+              <span className="text-xl md:text-xl font-medium mx-8 tracking-wider uppercase">
                 WINDOW TINTING
               </span>
             </div>
@@ -174,7 +172,7 @@ export function ServicesSection() {
           >
             <div className="inline-block mb-4">
               <span className="text-secondary text-sm font-semibold tracking-widest uppercase border border-secondary px-4 py-2 rounded-full">
-                Our Services
+                Premium Protection
               </span>
             </div>
             <h2 className="text-5xl md:text-6xl font-bold font-family-sans text-white mb-6 text-balance relative min-h-[1.2em]">
@@ -182,8 +180,10 @@ export function ServicesSection() {
               {isTyping && (
                 <span className="inline-block w-2 h-[1.2em] bg-secondary ml-1 animate-pulse align-middle" />
               )}
-              {/* <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-secondary rounded-full"></div> */}
             </h2>
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+              Advanced automotive protection solutions using cutting-edge technology and premium products
+            </p>
           </div>
 
           {/* Enhanced Services Grid */}
@@ -219,7 +219,7 @@ export function ServicesSection() {
               </div>
               <div className="flex items-center">
                 <div className="w-2 h-2 bg-secondary rounded-full mr-2 animate-pulse"></div>
-                <span className="text-sm font-medium">Satisfaction Guaranteed</span>
+                <span className="text-sm font-medium">Long-lasting Protection</span>
               </div>
             </div>
           </div>
@@ -301,19 +301,19 @@ function ServiceCard({
           </div>
 
           {/* Back Side - Visible on hover */}
-          <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-black rounded-lg border-2 border-secondary p-6 flex flex-col items-center justify-center text-center">
+          <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-white/30 backdrop-blur-lg  text-white rounded-lg border-2 border-secondary p-6 flex flex-col items-center justify-center text-center">
             <h3 className="text-2xl font-bold text-white mb-4">
               {service.title}
             </h3>
-            <p className="text-gray-300 mb-4">{service.description}</p>
-            <ul className="text-gray-400 text-sm mb-6">
+            <p className="text-white mb-4">{service.description}</p>
+            <ul className="text-white text-sm mb-6">
               {service.features.map((feature, i) => (
                 <li key={i} className="mb-1">• {feature}</li>
               ))}
             </ul>
             <Link to={service.link}>
               <button className="bg-secondary text-black font-bold py-2 px-6 rounded-full transition-colors duration-300 transform hover:scale-105">
-                View More ›
+                Learn More ›
               </button>
             </Link>
           </div>

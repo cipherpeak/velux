@@ -16,8 +16,8 @@ export function ContactHelpSection() {
   const sectionRef = useRef<HTMLElement>(null)
 
   const headingLines = [
-    "Do You Need Help In Choosing a Service?",
-    "We're Here to Help"
+    "Need Expert Advice on Vehicle Protection?",
+    "We're Here to Guide You"
   ]
 
   // Intersection Observer for scroll animations
@@ -110,11 +110,11 @@ export function ContactHelpSection() {
       <div className="absolute inset-0 w-full h-full">
         <img 
           src={backbg} 
-          alt="Detailing Mafia Background" 
+          alt="Velux Automotive Protection" 
           className="w-full h-full object-cover"
         />
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/10 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
       </div>
 
       {/* Content Container with Glass Effect */}
@@ -123,7 +123,7 @@ export function ContactHelpSection() {
           {/* Glass Morphism Card - Reduced Padding */}
           <div 
             id="contact-card"
-            className={`bg-gray-800/60 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-gray-700/50 shadow-2xl transition-all duration-1000 ${
+            className={`bg-white/30 backdrop-blur-lg  text-white border border-secondary rounded-2xl p-6 md:p-8  shadow-2xl transition-all duration-1000 ${
               getVisibility("contact-card") 
                 ? "opacity-100 scale-100" 
                 : "opacity-0 scale-95"
@@ -144,11 +144,11 @@ export function ContactHelpSection() {
                   <>
                     {typingText}
                     {isTyping && currentLine === 0 && (
-                      <span className="inline-block w-2 h-[1.2em] bg-[#f4c55c] ml-1 animate-pulse align-middle" />
+                      <span className="inline-block w-2 h-[1.2em] bg-secondary ml-1 animate-pulse align-middle" />
                     )}
                   </>
                 ) : (
-                  "Do You Need Help In Choosing a Service?"
+                  "Need Expert Advice on Vehicle Protection?"
                 )}
               </h2>
 
@@ -161,11 +161,11 @@ export function ContactHelpSection() {
                     : "opacity-0 translate-y-10"
                 }`}
               >
-                <p className="text-lg text-gray-200 mb-2 font-medium">
-                  The Mafia always stays true to its words.
+                <p className="text-lg text-white mb-2 font-medium">
+                  Quality matters in every detail of vehicle protection.
                 </p>
-                <p className="text-base text-gray-300 opacity-90">
-                  For any queries and assistance.
+                <p className="text-base text-white opacity-90">
+                  Get professional guidance on ceramic coating, PPF, and graphene protection.
                 </p>
               </div>
 
@@ -187,15 +187,15 @@ export function ContactHelpSection() {
                       : "opacity-0 scale-90"
                   }`}
                 >
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-700/50 rounded-full mb-3 border border-gray-600/30">
-                    <svg className="w-6 h-6 text-[#f4c55c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="inline-flex items-center justify-center w-12 h-12  rounded-full mb-3 border border-secondary">
+                    <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </div>
                   <p className="text-xl md:text-2xl font-bold text-white mb-1">
-                    Call Us at: <span className="text-[#f4c55c] bg-gradient-to-r from-[#f4c55c] to-[#f8d78b] bg-clip-text text-transparent">80-100-44000</span>
+                    Call Us: <span className="text-secondary bg-gradient-to-r from-secondary to-yellow-300 bg-clip-text ">+971 4 33 99 550</span>
                   </p>
-                  <p className="text-gray-300 text-sm opacity-90">9AM - 6PM assistance</p>
+                  <p className="text-white text-sm opacity-90">Professional consultation available</p>
                 </div>
 
                 {/* Email */}
@@ -207,19 +207,39 @@ export function ContactHelpSection() {
                       : "opacity-0 scale-90"
                   }`}
                 >
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-700/50 rounded-full mb-3 border border-gray-600/30">
-                    <svg className="w-6 h-6 text-[#f4c55c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="inline-flex items-center justify-center w-12 h-12  rounded-full mb-3 border border-secondary">
+                    <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <p className="text-base text-gray-300 opacity-90">
-                    Mail us -{" "}
+                  <p className="text-base text-white opacity-90">
+                    Email us -{" "}
                     <a
-                      href="mailto:info@thedetailingmafia.com"
-                      className="text-[#f4c55c] hover:text-[#f8d78b] transition-colors duration-300 font-medium underline underline-offset-4"
+                      href="mailto:info@redtronicllc.com"
+                      className="text-secondary hover:text-yellow-300 transition-colors duration-300 font-medium underline underline-offset-4"
                     >
-                      info@thedetailingmafia.com
+                      info@redtronicllc.com
                     </a>
+                  </p>
+                </div>
+
+                {/* Location */}
+                <div 
+                  id="location-info"
+                  className={`text-center transition-all duration-700 delay-1000 ${
+                    getVisibility("location-info") 
+                      ? "opacity-100 scale-100" 
+                      : "opacity-0 scale-90"
+                  }`}
+                >
+                  <div className="inline-flex items-center justify-center w-12 h-12  rounded-full mb-3 border border-secondary">
+                    <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <p className="text-base text-white opacity-90">
+                    Based in Dubai, UAE - Serving GCC, MENA, Asia & Africa
                   </p>
                 </div>
               </div>
@@ -233,8 +253,8 @@ export function ContactHelpSection() {
                     : "opacity-0 translate-y-10"
                 }`}
               >
-                <button className="bg-gradient-to-r from-[#f4c55c] to-[#f8d78b] text-black font-bold py-3 px-8 rounded-xl text-base transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl hover:shadow-[#f4c55c]/25 border-2 border-transparent hover:border-[#f4c55c]/30">
-                  Get Free Consultation
+                <button className="bg-secondary  text-black font-bold py-3 px-8 rounded-xl text-base transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl hover:shadow-secondary/25 border-2 border-transparent hover:border-secondary/30">
+                  Get Professional Consultation
                 </button>
               </div>
             </div>
@@ -244,14 +264,14 @@ export function ContactHelpSection() {
 
       {/* Reduced Decorative Elements */}
       <div 
-        className={`absolute top-0 left-0 w-20 h-20 bg-[#f4c55c]/10 rounded-full blur-lg transition-all duration-1500 delay-1200 ${
+        className={`absolute top-0 left-0 w-20 h-20 bg-secondary/10 rounded-full blur-lg transition-all duration-1500 delay-1200 ${
           getVisibility("contact-section") 
             ? "opacity-100 scale-100" 
             : "opacity-0 scale-50"
         }`}
       ></div>
       <div 
-        className={`absolute bottom-0 right-0 w-24 h-24 bg-[#f4c55c]/5 rounded-full blur-xl transition-all duration-1500 delay-1400 ${
+        className={`absolute bottom-0 right-0 w-24 h-24 bg-secondary/5 rounded-full blur-xl transition-all duration-1500 delay-1400 ${
           getVisibility("contact-section") 
             ? "opacity-100 scale-100" 
             : "opacity-0 scale-50"
